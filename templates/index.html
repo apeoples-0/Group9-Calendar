@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebCalendar Login</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1>WebCalendar Login</h1>
+
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+
+        <form action="{{ url_for('login') }}" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required><br>
+            <label for="password">Password:</label>
+            <input type="text" name="password" id="password" required><br>
+            <input type="submit" value="Login">
+        </form>
+        <h1>{{ error }}</h1>
+    </body>
+</html>

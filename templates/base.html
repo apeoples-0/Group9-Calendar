@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>WebCalendar - {% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	</head>
+	<body>
+		<nav>
+				<h1>WebCalendar</h1>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+				<a href="{{ url_for('logout') }}">Logout</a>
+		</nav>
+        {% block content %}{% endblock %}
+	</body>
+</html>
