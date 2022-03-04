@@ -9,9 +9,12 @@ import MySQLdb
 # Import database connection from db.py
 import db
 # Flask
-from flask import redirect, render_template, request, session, url_for
+from flask import redirect, render_template, request, session, url_for, Blueprint
 # RegEx (Prevent invalid input)
 import re
+
+# Define account blueprint
+account = Blueprint('account', __name__)
 
 # Password hashing function
 def hashPassword(password):
@@ -20,7 +23,7 @@ def hashPassword(password):
     return hash.hexdigest()
 
 # Login page
-@app.route('/', methods=['GET', 'POST'])
+@account.route('/', methods=['GET', 'POST'])
 def login():
     # Error message (if any)
     error = ''
@@ -47,7 +50,7 @@ def login():
             session['loggedIn'] = True
             session['username'] = account['username']
             # Redirect to Dashboard
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('dashboard.dash'))
         else:
             # Login failed
             error = 'Incorrect Credentials!'
@@ -55,7 +58,7 @@ def login():
     return render_template('index.html', error = error)
 
 # Registration page
-@app.route('/register', methods=['GET', 'POST'])
+@account.route('/register', methods=['GET', 'POST'])
 def register():
     # Error message (if any)
     error = ''
@@ -91,11 +94,11 @@ def register():
     return render_template('register.html', error = error)
 
 # Logout
-@app.route('/logout')
+@account.route('/logout')
 def logout():
     # Pop session data
     session.pop('loggedIn', None)
     session.pop('username', None)
 
     # Redirect to login
-    return redirect(url_for('login'))
+    return redirect(url_for('account.login'))

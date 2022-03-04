@@ -1,11 +1,14 @@
 # This file contains the routes for dashboard related tasks
 
 from app import app
-from flask import Flask, session, render_template, redirect, url_for
+from flask import session, render_template, redirect, url_for, Blueprint
+
+# Define dashboard blueprint
+dashboard = Blueprint('dashboard', __name__)
 
 # Dashboard
-@app.route('/dashboard')
-def dashboard():
+@dashboard.route('/dashboard')
+def dash():
 
     # Check if user is logged in
     if 'loggedIn' in session:
@@ -13,4 +16,4 @@ def dashboard():
         return render_template('dashboard.html', username=session['username'])
     
     # If user is not logged in, redirect to /login
-    return redirect(url_for('login'))
+    return redirect(url_for('account.login'))

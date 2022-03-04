@@ -7,8 +7,8 @@
 	<body>
 		<nav>
 				<h1>WebCalendar</h1>
-                <a href="{{ url_for('dashboard') }}">Dashboard</a>
-				<a href="{{ url_for('logout') }}">Logout</a>
+                <a href="{{ url_for('dashboard.dash') }}">Dashboard</a>
+				<a href="{{ url_for('account.logout') }}">Logout</a>
 		</nav>
         {% block content %}{% endblock %}
 	</body>
