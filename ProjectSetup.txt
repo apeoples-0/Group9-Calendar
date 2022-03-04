@@ -1,6 +1,6 @@
 Setup Information for WebCalendar
 
-By default, MySQL user is set to 'root', password is set to '1234', and database is set to 'webcalendar'
+By default, MySQL user is set to 'root', password is set to '1234', and database is set to 'webcalendar' This can be changed in config.py.
 
 To initialize database:
 In MySQL Workbench, connect to your MySQL server, copy/paste the query from 'sql/init.sql' and run.
