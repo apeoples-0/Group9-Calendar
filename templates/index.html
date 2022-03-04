@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
+        <div class="loginPage">
         <h1>WebCalendar Login</h1>
 
         <a href="{{ url_for('account.login') }}">Login</a>
@@ -18,5 +19,6 @@
             <input type="submit" value="Login">
         </form>
         <h1>{{ error }}</h1>
+    </div>
     </body>
 </html>
