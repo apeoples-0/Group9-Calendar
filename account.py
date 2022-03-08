@@ -1,6 +1,7 @@
 # This file contains the routes for account-related tasks
 
 # Import app info from app.py
+from turtle import update
 from app import app
 # For password hashing
 import hashlib
@@ -66,12 +67,13 @@ def register():
     # Get POST requests (username/password)
     if request.method == 'POST':
 
-        # Get username and password from form
+        # Get username, password and backup passphrase from form
         username = request.form['username']
         password = hashPassword(request.form['password'])
+        backupPhrase = hashPassword(request.form['backup'])
         
         # Make sure there is text in the username and password boxes
-        if (username is not None and password is not None):
+        if (username is not None and password is not None and backupPhrase is not None):
             # MySQL (Check if account already exists)
             cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             # Execute MySQL query to check for account
@@ -87,11 +89,50 @@ def register():
             error = "Username must only contain letters, numbers, dashes, and underscores."
         # Create account
         else:
-            cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s)', (username, password))
+            cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s, %s)', (username, password, backupPhrase))
             db.mysql.connection.commit()
             error = "Registration Successful!"
 
     return render_template('register.html', error = error)
+
+# Password Reset
+@account.route('/passwordreset', methods=['GET', 'POST'])
+def passwordReset():
+    # Message (Error or Success)
+    message = ''
+
+    # Get POST requests (username/backup phrase/password)
+    if request.method == 'POST':
+
+         # Get username, new password and backup passphrase from form
+        username = request.form['username']
+        password = hashPassword(request.form['password'])
+        backupPhrase = hashPassword(request.form['backup'])
+
+        # Make sure there is text in the username and password boxes
+        if (username is not None and password is not None and backupPhrase is not None):
+            # MySQL (check for account)
+            cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            # Execute MySQL query to check for account
+            cursor.execute('SELECT * from accounts WHERE username = %s AND backupphrase = %s', (username, backupPhrase))
+            # Return record
+            account = cursor.fetchone()
+
+        # If cursor.fetchone() returns an account
+        if account:
+            updateQuery = ''' 
+            UPDATE accounts
+            SET password = %s
+            WHERE username = %s
+            '''
+            cursor.execute(updateQuery, (password, username))
+            db.mysql.connection.commit()
+            message = "Password reset successful!"
+        else:
+            # Reset failed
+            message = 'Username or backup phrase incorrect!'
+
+    return render_template('passwordreset.html', message = message)
 
 # Logout
 @account.route('/logout')

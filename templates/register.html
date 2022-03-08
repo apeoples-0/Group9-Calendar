@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>WebCalendar Registration</title>
+        <title>WebCalendar - Registration</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
@@ -16,6 +16,8 @@
             <input type="text" name="username" id="username" required><br>
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" required><br>
+            <label for="backup">Backup Passphrase:</label>
+            <input type="password" name="backup" id="backup" required><br>
             <input type="submit" value="Register">
         </form>
         <h1>{{ error }}</h1>
