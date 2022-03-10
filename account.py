@@ -55,6 +55,7 @@ def login():
             # Set session data
             session['loggedIn'] = True
             session['username'] = account['username']
+            session.permanent = True
             # Redirect to Dashboard
             return redirect(url_for('dashboard.dash'))
         else:
