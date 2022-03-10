@@ -29,6 +29,11 @@ def login():
     # Error message (if any)
     error = ''
 
+    # Check if user is already logged in
+    if 'loggedIn' in session:
+        # Go to Dashboard
+        return render_template('calendar.html', username=session['username'])
+
     # Get POST requests (username/password)
     if request.method == 'POST':
 
@@ -109,7 +114,7 @@ def passwordReset():
         password = hashPassword(request.form['password'])
         backupPhrase = hashPassword(request.form['backup'])
 
-        # Make sure there is text in the username and password boxes
+        # Make sure there is text in the username, backup phrase, and password boxes
         if (username is not None and password is not None and backupPhrase is not None):
             # MySQL (check for account)
             cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)

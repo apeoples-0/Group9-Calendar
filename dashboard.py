@@ -13,7 +13,7 @@ def dash():
     # Check if user is logged in
     if 'loggedIn' in session:
         # Go to Dashboard
-        return render_template('dashboard.html', username=session['username'])
+        return render_template('calendar.html', username=session['username'])
     
     # If user is not logged in, redirect to /login
     return redirect(url_for('account.login'))
