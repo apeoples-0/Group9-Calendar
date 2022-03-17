@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <title>WebCalendar - Account Management</title>
+    </head>
+    <body>
+        <h1>WebCalendar - Account Management</h1>
+        <a href="{{ url_for('dashboard.dash') }}">Dashboard</a>
+        <a href="{{ url_for('account.logout') }}">Logout</a>
+        <br>
+        <h2>Account: {{ username }}</h2>
+        <a href="{{ url_for('account.changePassword') }} ">Change Password</a>
+    </body>
+</html>

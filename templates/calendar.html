@@ -11,6 +11,25 @@
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
+          customButtons: {
+            accountButton: {
+              text: 'Account',
+              click: function() {
+                window.location.href = "{{ url_for('account.management') }}";
+              }
+            },
+            logoutButton: {
+              text: 'Log Out',
+              click: function() {
+                window.location.href = "{{ url_for('account.logout') }}";
+              }
+            }
+          },
+          headerToolbar: {
+            left: 'prev,next',
+            center: 'title',
+            right: 'accountButton,logoutButton'
+          },
           initialView: 'dayGridMonth'
         });
         calendar.render();
@@ -19,11 +38,5 @@
 	</head>
 	<body>
 		<div id='calendar'></div>
-		<nav>
-				<h1>WebCalendar</h1>
-                <a href="{{ url_for('dashboard.dash') }}">Dashboard</a>
-				<a href="{{ url_for('account.logout') }}">Logout</a>
-		</nav>
-        {% block content %}{% endblock %}
 	</body>
 </html>

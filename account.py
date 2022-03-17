@@ -1,7 +1,6 @@
 # This file contains the routes for account-related tasks
 
 # Import app info from app.py
-from turtle import update
 from app import app
 # For password hashing
 import hashlib
@@ -101,6 +100,15 @@ def register():
 
     return render_template('register.html', error = error)
 
+# Account Management
+@account.route('/management')
+def management():
+    # Error (if any)
+    error = ''
+
+    # Redirect to login
+    return render_template('management.html', error = error, username=session['username'])
+
 # Password Reset
 @account.route('/passwordreset', methods=['GET', 'POST'])
 def passwordReset():
@@ -139,6 +147,44 @@ def passwordReset():
             message = 'Username or backup phrase incorrect!'
 
     return render_template('passwordreset.html', message = message)
+
+# Change Password
+@account.route('/changepassword', methods=['GET', 'POST'])
+def changePassword():
+    # Message (Error or Success)
+    message = ''
+
+    # Get POST requests (old password/new password)
+    if request.method == 'POST':
+
+         # Get username, new password and backup passphrase from form
+        oldPassword = hashPassword(request.form['old'])
+        newPassword = hashPassword(request.form['new'])
+
+        # Make sure there is text in both boxes
+        if (oldPassword is not None and newPassword is not None):
+            # MySQL (check for account)
+            cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            # Execute MySQL query to check for account
+            cursor.execute('SELECT * from accounts WHERE username = %s AND password = %s', (session['username'], oldPassword))
+            # Return record
+            account = cursor.fetchone()
+
+        # If cursor.fetchone() returns an account
+        if account:
+            updateQuery = ''' 
+            UPDATE accounts
+            SET password = %s
+            WHERE username = %s
+            '''
+            cursor.execute(updateQuery, (newPassword, session['username']))
+            db.mysql.connection.commit()
+            message = "Password change successful!"
+        else:
+            # Change failed
+            message = 'Current password is incorrect!'
+
+    return render_template('changepassword.html', message = message)
 
 # Logout
 @account.route('/logout')
