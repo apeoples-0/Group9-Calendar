@@ -6,7 +6,17 @@
 	<!-- Script tags taken from fullcalendar bundle included with files now -->
     <link href='../static/fullcalendar/lib/main.css' rel='stylesheet' />
     <script src='../static/fullcalendar/lib/main.js'></script>
-	<!-- Calendar initialization -->
+  <!-- Font Awesome -->
+    <link href="../static/fontawesome/css/all.css" rel="stylesheet">
+  <!-- Bootstrap -->
+    <script src='../static/bootstrap/jquery-3.6.0.min.js'></script>
+    <script src='../static/bootstrap/popper.min.js'></script>
+    <script src='../static/bootstrap/moment.min.js'></script>
+    <link href='../static/bootstrap/bootstrap.min.css' rel='stylesheet' />
+    <script src='../static/bootstrap/bootstrap.min.js'></script>
+    <script src='../static/bootstrap/tempusdominus-bootstrap-4.min.js'></script>
+    <link href='../static/bootstrap/tempusdominus-bootstrap-4.min.css' rel='stylesheet'/>
+  <!-- Calendar initialization -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
@@ -23,10 +33,16 @@
               click: function() {
                 window.location.href = "{{ url_for('account.logout') }}";
               }
+            },
+            addEventButton: {
+              text: 'Add Event',
+              click: function() {
+                window.location.href = "{{ url_for('dashboard.addEvent') }}";
+              }
             }
           },
           headerToolbar: {
-            left: 'prev,next',
+            left: 'prev,next,addEventButton',
             center: 'title',
             right: 'accountButton,logoutButton'
           },
@@ -38,5 +54,13 @@
 	</head>
 	<body>
 		<div id='calendar'></div>
+    {% block addeventmodal %}{% endblock %}
 	</body>
+  {% block script %}
+  <script>
+    $(document).ready(function(){
+      $("#addEventModal").modal("show")
+  })
+  </script>
+  {% endblock %}
 </html>

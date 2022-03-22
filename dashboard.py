@@ -17,3 +17,7 @@ def dash():
     
     # If user is not logged in, redirect to /login
     return redirect(url_for('account.login'))
+
+@dashboard.route('/addevent')
+def addEvent():
+    return render_template("addeventmodal.html")
