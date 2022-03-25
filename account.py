@@ -31,7 +31,7 @@ def login():
     # Check if user is already logged in
     if 'loggedIn' in session:
         # Go to Dashboard
-        return render_template('calendar.html', username=session['username'])
+        return redirect(url_for('dashboard.dash'))
 
     # Get POST requests (username/password)
     if request.method == 'POST':
@@ -54,6 +54,7 @@ def login():
             # Set session data
             session['loggedIn'] = True
             session['username'] = account['username']
+            session['userID'] = account['userID']
             session.permanent = True
             # Redirect to Dashboard
             return redirect(url_for('dashboard.dash'))
@@ -192,6 +193,7 @@ def logout():
     # Pop session data
     session.pop('loggedIn', None)
     session.pop('username', None)
+    session.pop('userID', None)
 
     # Redirect to login
     return redirect(url_for('account.login'))

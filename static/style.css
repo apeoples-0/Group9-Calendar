@@ -72,3 +72,22 @@ html {
         border-color: #2691d9;
         transition: .5s;
     }
+
+    .errorPage{
+        max-width: 500px;
+        background-color: white;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: 3px solid black;
+        border-radius: 10px;
+        box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+        padding: 10px;
+    }
+
+    .errorPage h1{
+        text-align: center;
+        padding: 0 0 20px 0;
+        border-bottom: 1px solid silver;
+    }
