@@ -53,8 +53,6 @@ def convertDateTime(date):
     convertedDate = ' '.join([convertedDate, dateList[3]])
     convertedDate = ':'.join([convertedDate, dateList[4], "00"])
     
-    print(convertedDate)
-
     return(convertedDate)
 
 # Dashboard
