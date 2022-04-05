@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!-- Shared Event Page -->
+<html>
+
+<head>
+    <title>WebCalendar - Shared Event</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="errorPage">
+        <h1>{{event.eventName}}</h1>
+        <h3>{{event.startTime}}-{{event.endTime}}</h3>
+        <h4>To share this event, share this page.</h4>
+        <form action="{{ url_for('dashboard.addSharedEvent') }}" method="post">
+            <button name="eventID" value="{{event.eventID}}">Add To Calendar</button>
+        </form>
+        <a href="{{ url_for('dashboard.dash') }}">Dashboard</a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!-- No Account Page-->>
+<html>
+
+<head>
+    <title>WebCalendar - Error</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="errorPage">
+        <h1>WebCalendar - Error</h1>
+        <h3>To add events, an account is required</h3>
+        <a href="{{ url_for('account.register') }}">Register</a>
+
+    </div>
+</body>
+
+</html>
