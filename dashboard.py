@@ -3,7 +3,6 @@
 from multiprocessing import shared_memory
 from tracemalloc import start
 import MySQLdb
-from app import app
 from flask import request, session, render_template, redirect, url_for, Blueprint
 # Import database connection from db.py
 import db

@@ -1,7 +1,5 @@
 # This file contains the routes for account-related tasks
 
-# Import app info from app.py
-from app import app
 # For password hashing
 import hashlib
 # MySQL
