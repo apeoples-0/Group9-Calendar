@@ -35,7 +35,8 @@ def loadEvents():
              "name" : event['eventName'],
              "startdate" : event['startTime'],
              "enddate" : event['endTime'],
-             "id" : event['eventID']
+             "id" : event['eventID'],
+             "color" : event['color']
         })
 
     return events
@@ -74,6 +75,7 @@ def addEvent():
     eventName = request.form['eventName']
     startDateTime = request.form['startDateTime']
     endDateTime = request.form['endDateTime']
+    color = getCSSColor(request.form['eventColor'])
 
     if request.method == 'POST':
         if 'loggedIn' in session:
@@ -81,8 +83,8 @@ def addEvent():
                 return render_template('addeventfailed.html')
             if ((eventName != "" or None) and (startDateTime != "" or None)):
                 cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, 0)', (eventName, convertDateTime(startDateTime),
-                convertDateTime(endDateTime), session['userID']))
+                cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, 0, %s)', (eventName, convertDateTime(startDateTime),
+                convertDateTime(endDateTime), session['userID'], color))
                 db.mysql.connection.commit()
     return redirect(url_for('dashboard.dash'))
 
@@ -127,8 +129,8 @@ def addSharedEvent():
             print(event)
 
             # Insert the event into the user's calendar
-            cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, 1)', (event['eventName'], event['startTime'],
-                event['endTime'], session['userID'])) 
+            cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, 1, %s)', (event['eventName'], event['startTime'],
+                event['endTime'], session['userID'], event['color'])) 
             db.mysql.connection.commit()  
 
             return redirect(url_for('dashboard.dash'))
@@ -164,3 +166,19 @@ def modifyEvent():
                 return redirect(url_for('dashboard.sharedEvent') + '?e=' + request.form['share'])
 
     return redirect(url_for('dashboard.dash'))
+
+# Gets the CSS color (more visually appealing) based on the name provided
+def getCSSColor(color):
+    match color:
+        case "Blue":
+            return "royalblue"
+        case "Red":
+            return "firebrick"
+        case "Orange":
+            return "orange"
+        case "Yellow":
+            return "gold"
+        case "Green":
+            return "darkgreen"
+        case "Purple":
+            return "purple"
