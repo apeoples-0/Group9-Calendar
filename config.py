@@ -11,3 +11,6 @@ SECRET_KEY = 'A secret key.'
 
 # Flask Session Time (for retaining user logins) (Users will remain logged in for 14 days)
 PERMANENT_SESSION_LIFETIME = datetime.timedelta(14)
+
+# Calendar Configuration
+HOLIDAY_COLOR = 'black'

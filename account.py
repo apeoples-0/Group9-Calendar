@@ -2,6 +2,7 @@
 
 # For password hashing
 import hashlib
+from turtle import update
 # MySQL
 import MySQLdb
 # Import database connection from db.py
@@ -53,6 +54,7 @@ def login():
             session['loggedIn'] = True
             session['username'] = account['username']
             session['userID'] = account['userID']
+            session['holidays'] = int.from_bytes(account['holidays'], "big")
             session.permanent = True
             # Redirect to Dashboard
             return redirect(url_for('dashboard.dash'))
@@ -93,7 +95,7 @@ def register():
             error = "Username must only contain letters, numbers, dashes, and underscores."
         # Create account
         else:
-            cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s, %s)', (username, password, backupPhrase))
+            cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s, %s, 1)', (username, password, backupPhrase))
             db.mysql.connection.commit()
             error = "Registration Successful!"
 
@@ -192,6 +194,51 @@ def logout():
     session.pop('loggedIn', None)
     session.pop('username', None)
     session.pop('userID', None)
+    session.pop('holidays', None)
 
     # Redirect to login
     return redirect(url_for('account.login'))
+
+# Enable Holidays
+@account.route('/enableholidays')
+def enableHolidays():
+    # MySQL cursor
+    cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
+    updateQuery = ''' 
+            UPDATE accounts
+            SET holidays = 1
+            WHERE username = %s
+            '''
+
+    # Enable holidays for the currently logged in user
+    cursor.execute(updateQuery, (session['username'],))
+
+    # Commit changes
+    db.mysql.connection.commit()
+
+    session['holidays'] = 1
+
+    return redirect(url_for('account.management'))
+
+# Disable Holidays
+@account.route('/disableholidays')
+def disableHolidays():
+    # MySQL cursor
+    cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
+    updateQuery = ''' 
+            UPDATE accounts
+            SET holidays = 0
+            WHERE username = %s
+            '''
+
+    # Disable holidays for the currently logged in user
+    cursor.execute(updateQuery, (session['username'],))
+
+    # Commit changes
+    db.mysql.connection.commit()
+
+    session['holidays'] = 0
+
+    return redirect(url_for('account.management'))

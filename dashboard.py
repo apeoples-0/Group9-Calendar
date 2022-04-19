@@ -36,10 +36,41 @@ def loadEvents():
              "startdate" : event['startTime'],
              "enddate" : event['endTime'],
              "id" : event['eventID'],
-             "color" : event['color']
+             "color" : event['color'],
+             #TODO: PROPERLY IMPLEMENT ALLDAY EVENTS
+             "allDay" : 'false'
         })
 
     return events
+
+# Load holidays
+def loadHolidays():
+    # Get holidays query
+    getHolidaysQuery = '''
+            SELECT *
+            FROM holidays
+    '''
+    cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute(getHolidaysQuery)
+
+    # Store the holidays from the database in eventsSQL
+    holidaysSQL = cursor.fetchall()
+    
+    # Create holidays array for frontend
+    holidays = []
+
+    # Add holidays
+    for event in holidaysSQL:
+        holidays.append({
+             "name" : event['eventName'],
+             "startdate" : event['startTime'],
+             "enddate" : event['endTime'],
+             "id" : 'None',
+             "color" : event['color'],
+             "allDay" : 'true'
+        })
+
+    return holidays
 
 # Convert datetimepicker string to date object
 def convertDateTime(date):
@@ -63,8 +94,20 @@ def dash():
 
     # Check if user is logged in
     if 'loggedIn' in session:
+        # Add events and holidays (if requested) to the calendar
+        events = []
+        
+        # Add calendar events
+        for event in loadEvents():
+            events.append(event)
+
+        # If holidays are enabled, add them as well
+        if 'holidays' in session and session['holidays'] == 1:
+            for event in loadHolidays():
+                events.append(event)
+
         # Go to Dashboard
-        return render_template('calendar.html', events = loadEvents())
+        return render_template('calendar.html', events = events)
     
     # If user is not logged in, redirect to /login
     return redirect(url_for('account.login'))
@@ -126,8 +169,6 @@ def addSharedEvent():
             # Store the received event
             event = cursor.fetchone()
 
-            print(event)
-
             # Insert the event into the user's calendar
             cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, 1, %s)', (event['eventName'], event['startTime'],
                 event['endTime'], session['userID'], event['color'])) 
@@ -145,12 +186,19 @@ def modifyEvent():
     if request.method == 'POST':
         if 'loggedIn' in session:
             if "delete" in request.form:
-                print(request.form['delete'])
+                # If the event being modified is a holiday, return an error
+                if request.form['delete'] == 'None':
+                    return render_template('holidayerror.html')
+
                 cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute('DELETE FROM events WHERE eventID=%s AND userID=%s', (request.form['delete'], session['userID']))
                 db.mysql.connection.commit()
                 return redirect(url_for('dashboard.dash'))
             if "share" in request.form:
+                # If the event being modified is a holiday, return an error
+                if request.form['share'] == 'None':
+                    return render_template('holidayerror.html')
+
                 # Make event shareable
                 cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute('''

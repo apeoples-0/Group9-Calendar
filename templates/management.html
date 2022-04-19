@@ -1,17 +1,24 @@
 <html>
-    <head>
-        <meta charset='utf-8' />
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-        <title>WebCalendar - Account Management</title>
-    </head>
-    <body>
-        <div class="ManagementPage">
+
+<head>
+    <meta charset='utf-8' />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>WebCalendar - Account Management</title>
+</head>
+
+<body>
+    <div class="ManagementPage">
         <h1>WebCalendar - Account Management</h1>
         <a href="{{ url_for('dashboard.dash') }}">Dashboard</a>
         <a href="{{ url_for('account.logout') }}">Logout</a>
         <br>
         <h2>Account: {{ username }}</h2>
         <a href="{{ url_for('account.changePassword') }} ">Change Password</a>
+        <div class="setting" style="text-align: center;">
+            <h2>Holidays:</h2> <a href="{{ url_for('account.enableHolidays') }} ">On</a> <a
+                href="{{ url_for('account.disableHolidays') }} ">Off</a>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

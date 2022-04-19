@@ -1,0 +1,390 @@
+BEGIN:VCALENDAR
+VERSION;VALUE=TEXT:2.0
+PRODID;VALUE=TEXT:-//WebCal.Guru//NONSGML WebCal.Guru//EN
+CALSCALE;VALUE=TEXT:GREGORIAN
+METHOD;VALUE=TEXT:PUBLISH
+X-MS-OLK-FORCEINSPECTOROPEN:FALSE
+NAME;VALUE=TEXT:US Federal Holidays
+X-WR-CALNAME;VALUE=TEXT:US Federal Holidays
+SOURCE;VALUE=URI:https://www.webcal.guru/en-US/download_calendar?calendar_
+ instance_id=41
+URL;VALUE=URI:https://www.webcal.guru/en-US/event_list?calendar_id=holiday
+ s
+UID;VALUE=TEXT:9EE190DB-CB70-4A66-AA23-097DDECD1B38@webcal.guru
+X-WR-RELCALID;VALUE=TEXT:9EE190DB-CB70-4A66-AA23-097DDECD1B38@webcal.guru
+DESCRIPTION;VALUE=TEXT;LANGUAGE=en-US:This list contains only actual holid
+ ays. See Good to Know calendar for other noteworthy events.
+X-WR-CALDESC;VALUE=TEXT;LANGUAGE=en-US:This list contains only actual holi
+ days. See Good to Know calendar for other noteworthy events.
+X-WR-TIMEZONE;VALUE=TEXT:UTC
+REFRESH-INTERVAL;VALUE=DURATION:P1W
+X-PUBLISHED-TTL;VALUE=DURATION:P1W
+X-OWNER;VALUE=TEXT;CN=WebCal.Guru:mailto:guru@webcal.guru
+COLOR;VALUE=TEXT:#ff2600
+X-APPLE-CALENDAR-COLOR;VALUE=TEXT:#ff2600
+X-OUTLOOK-COLOR;VALUE=TEXT:#ff2600
+X-FUNAMBOL-COLOR;VALUE=TEXT:#ff2600
+X-LOTUS-CHARSET;VALUE=TEXT:UTF-8
+BEGIN:VEVENT
+UID;VALUE=TEXT:723909B2-EE7D-4870-ADE3-75F3284D75A2@webcal.guru
+X-FUNAMBOL-ALLDAY:1
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+DTSTART;VALUE=DATE:20220530
+DTEND;VALUE=DATE:20220531
+SUMMARY;VALUE=TEXT;LANGUAGE=en-US:Memorial Day
+DESCRIPTION;VALUE=TEXT;LANGUAGE=en-US:Memorial Day is a federal holiday in
+  the United States to honor and mourn the U.S. military personnel who have
+  died in the course of carrying out their duties. It was observed on May 3
+ 0 from 1868 to 1970\, and since on the last Monday of May.\n\nUpdated: Mon
+ \, 11 Apr 2022 08:57:11 +0000\n\nAdditional information\nhttps://en.wikipe
+ dia.org/wiki/Memorial_Day\n\nThis calendar is provided by WebCal.Guru (htt
+ ps://www.webcal.guru/).
+CLASS;VALUE=TEXT:PUBLIC
+URL;VALUE=URI:https://en.wikipedia.org/wiki/Memorial_Day
+CONTACT;VALUE=TEXT:guru@webcal.guru
+TRANSP;VALUE=TEXT:TRANSPARENT
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;VALUE=TEXT:DISABLED
+STATUS;VALUE=TEXT:CONFIRMED
+PRIORITY;VALUE=INTEGER:5
+SEQUENCE;VALUE=INTEGER:831
+CREATED;VALUE=DATE-TIME:20220411T085711Z
+LAST-MODIFIED;VALUE=DATE-TIME:20220411T085711Z
+DTSTAMP;VALUE=DATE-TIME:20220411T085711Z
+END:VEVENT
+BEGIN:VEVENT
+UID;VALUE=TEXT:F7DCD42F-2A2C-4122-AB95-665DF119E376@webcal.guru
+X-FUNAMBOL-ALLDAY:1
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+DTSTART;VALUE=DATE:20220704
+DTEND;VALUE=DATE:20220705
+SUMMARY;VALUE=TEXT;LANGUAGE=en-US:Independence Day
+DESCRIPTION;VALUE=TEXT;LANGUAGE=en-US:Independence Day is a federal holida
+ y in the United States commemorating the Declaration of Independence of th
+ e United States\, on July 4\, 1776. The Continental Congress declared that
+  the thirteen American colonies were no longer subject to the monarch of B
+ ritain\, King George III\, and were now united\, free\, and independent st
+ ates. The Congress had voted to declare independence two days earlier\, on
+  July 2\, but it was not declared until July 4.\n\nUpdated: Mon\, 11 Apr 2
+ 022 08:57:11 +0000\n\nAdditional information\nhttps://en.wikipedia.org/wik
+ i/Independence_Day_(United_States)\n\nThis calendar is provided by WebCal.
+ Guru (https://www.webcal.guru/).
+CLASS;VALUE=TEXT:PUBLIC
+URL;VALUE=URI:https://en.wikipedia.org/wiki/Independence_Day_(United_State
+ s)
+CONTACT;VALUE=TEXT:guru@webcal.guru
+TRANSP;VALUE=TEXT:TRANSPARENT
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;VALUE=TEXT:DISABLED
+STATUS;VALUE=TEXT:CONFIRMED
+PRIORITY;VALUE=INTEGER:5
+SEQUENCE;VALUE=INTEGER:831
+CREATED;VALUE=DATE-TIME:20220411T085711Z
+LAST-MODIFIED;VALUE=DATE-TIME:20220411T085711Z
+DTSTAMP;VALUE=DATE-TIME:20220411T085711Z
+END:VEVENT
+BEGIN:VEVENT
+UID;VALUE=TEXT:43514874-ABF2-4DA6-ABE6-64E20260403E@webcal.guru
+X-FUNAMBOL-ALLDAY:1
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+DTSTART;VALUE=DATE:20220905
+DTEND;VALUE=DATE:20220906
+SUMMARY;VALUE=TEXT;LANGUAGE=en-US:Labor Day
+DESCRIPTION;VALUE=TEXT;LANGUAGE=en-US:Labor Day is a federal holiday in th
+ e United States celebrated on the first Monday in September to honor and r
+ ecognize the American labor movement and the works and contributions of la
+ borers to the development and achievements of the United States. It is the
+  Monday of the long weekend known as Labor Day Weekend.\n\nUpdated: Mon\, 
+ 11 Apr 2022 08:57:11 +0000\n\nAdditional information\nhttps://en.wikipedia
+ .org/wiki/Labor_Day\n\nThis calendar is provided by WebCal.Guru (https://w
+ ww.webcal.guru/).
+CLASS;VALUE=TEXT:PUBLIC
+URL;VALUE=URI:https://en.wikipedia.org/wiki/Labor_Day
+CONTACT;VALUE=TEXT:guru@webcal.guru
+TRANSP;VALUE=TEXT:TRANSPARENT
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;VALUE=TEXT:DISABLED
+STATUS;VALUE=TEXT:CONFIRMED
+PRIORITY;VALUE=INTEGER:5
+SEQUENCE;VALUE=INTEGER:831
+CREATED;VALUE=DATE-TIME:20220411T085711Z
+LAST-MODIFIED;VALUE=DATE-TIME:20220411T085711Z
+DTSTAMP;VALUE=DATE-TIME:20220411T085711Z
+END:VEVENT
+BEGIN:VEVENT
+UID;VALUE=TEXT:E7DEEC71-9121-42ED-A7AD-44C3BEE0BFDD@webcal.guru
+X-FUNAMBOL-ALLDAY:1
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+DTSTART;VALUE=DATE:20221010
+DTEND;VALUE=DATE:20221011
+SUMMARY;VALUE=TEXT;LANGUAGE=en-US:Columbus Day
+DESCRIPTION;VALUE=TEXT;LANGUAGE=en-US:Columbus Day is a national holiday i
+ n many countries of the Americas and elsewhere\, and a federal holiday in 
+ the United States\, which officially celebrates the anniversary of Christo
+ pher Columbus's arrival in the Americas on October 12\, 1492.\n\nUpdated: 
+ Mon\, 11 Apr 2022 08:57:11 +0000\n\nAdditional information\nhttps://en.wik
+ ipedia.org/wiki/Columbus_Day\n\nThis calendar is provided by WebCal.Guru (
+ https://www.webcal.guru/).
+CLASS;VALUE=TEXT:PUBLIC
+URL;VALUE=URI:https://en.wikipedia.org/wiki/Columbus_Day
+CONTACT;VALUE=TEXT:guru@webcal.guru
+TRANSP;VALUE=TEXT:TRANSPARENT
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;VALUE=TEXT:DISABLED
+STATUS;VALUE=TEXT:CONFIRMED
+PRIORITY;VALUE=INTEGER:5
+SEQUENCE;VALUE=INTEGER:831
+CREATED;VALUE=DATE-TIME:20220411T085711Z
+LAST-MODIFIED;VALUE=DATE-TIME:20220411T085711Z
+DTSTAMP;VALUE=DATE-TIME:20220411T085711Z
+END:VEVENT
+BEGIN:VEVENT
+UID;VALUE=TEXT:556A421C-E2A7-4F4A-ACA0-4016025929B3@webcal.guru
+X-FUNAMBOL-ALLDAY:1
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+DTSTART;VALUE=DATE:20221111
+DTEND;VALUE=DATE:20221112
+SUMMARY;VALUE=TEXT;LANGUAGE=en-US:Veterans Day
+DESCRIPTION;VALUE=TEXT;LANGUAGE=en-US:Veterans Day is a federal holiday in
+  the United States observed annually on November 11\, for honoring militar
+ y veterans\, who are people who have served in the United States Armed For
+ ces. It coincides with other holidays including Armistice Day and Remembra
+ nce Day which are celebrated in other countries that mark the anniversary 
+ of the end of World War I. Major hostilities of World War I were formally 
+ ended at the 11th hour of the 11th day of the 11th month of 1918 when the 
+ Armistice with Germany went into effect. At the urging of major U.S. veter
+ an organizations\, Armistice Day was renamed Veterans Day in 1954.\n\nUpda
+ ted: Mon\, 11 Apr 2022 08:57:11 +0000\n\nAdditional information\nhttps://e
+ n.wikipedia.org/wiki/Veterans_Day\n\nThis calendar is provided by WebCal.G
+ uru (https://www.webcal.guru/).
+CLASS;VALUE=TEXT:PUBLIC
+URL;VALUE=URI:https://en.wikipedia.org/wiki/Veterans_Day
+CONTACT;VALUE=TEXT:guru@webcal.guru
+TRANSP;VALUE=TEXT:TRANSPARENT
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;VALUE=TEXT:DISABLED
+STATUS;VALUE=TEXT:CONFIRMED
+PRIORITY;VALUE=INTEGER:5
+SEQUENCE;VALUE=INTEGER:831
+CREATED;VALUE=DATE-TIME:20220411T085711Z
+LAST-MODIFIED;VALUE=DATE-TIME:20220411T085711Z
+DTSTAMP;VALUE=DATE-TIME:20220411T085711Z
+END:VEVENT
+BEGIN:VEVENT
+UID;VALUE=TEXT:E0D47EF3-7F35-475B-AA00-88488A96C181@webcal.guru
+X-FUNAMBOL-ALLDAY:1
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+DTSTART;VALUE=DATE:20221124
+DTEND;VALUE=DATE:20221125
+SUMMARY;VALUE=TEXT;LANGUAGE=en-US:Thanksgiving Day
+DESCRIPTION;VALUE=TEXT;LANGUAGE=en-US:Thanksgiving is a federal holiday in
+  the United States\, celebrated on the fourth Thursday of November. It is 
+ sometimes called American Thanksgiving to distinguish it from the Canadian
+  holiday of the same name and related celebrations in other regions. It or
+ iginated as a harvest festival\, and the centerpiece of Thanksgiving celeb
+ rations remains Thanksgiving dinner. The dinner traditionally consists of 
+ foods and dishes indigenous to the Americas\, namely turkey\, potatoes\, s
+ tuffing\, squash\, corn (maize)\, green beans\, cranberries\, and pumpkin 
+ pie. Other Thanksgiving customs include charitable organizations offering 
+ Thanksgiving dinner for the poor\, attending religious services\, watching
+  parades\, and viewing football games. In American culture Thanksgiving is
+  regarded as the beginning of the fall–winter holiday season\, which inclu
+ des Christmas and the New Year.\n\nUpdated: Mon\, 11 Apr 2022 08:57:11 +00
+ 00\n\nAdditional information\nhttps://en.wikipedia.org/wiki/Thanksgiving_(
+ United_States)\n\nThis calendar is provided by WebCal.Guru (https://www.we
+ bcal.guru/).
+CLASS;VALUE=TEXT:PUBLIC
+URL;VALUE=URI:https://en.wikipedia.org/wiki/Thanksgiving_(United_States)
+CONTACT;VALUE=TEXT:guru@webcal.guru
+TRANSP;VALUE=TEXT:TRANSPARENT
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;VALUE=TEXT:DISABLED
+STATUS;VALUE=TEXT:CONFIRMED
+PRIORITY;VALUE=INTEGER:5
+SEQUENCE;VALUE=INTEGER:831
+CREATED;VALUE=DATE-TIME:20220411T085711Z
+LAST-MODIFIED;VALUE=DATE-TIME:20220411T085711Z
+DTSTAMP;VALUE=DATE-TIME:20220411T085711Z
+END:VEVENT
+BEGIN:VEVENT
+UID;VALUE=TEXT:AD082888-E8AD-4FB3-AA3C-B2825DF278E4@webcal.guru
+X-FUNAMBOL-ALLDAY:1
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+DTSTART;VALUE=DATE:20221225
+DTEND;VALUE=DATE:20221226
+SUMMARY;VALUE=TEXT;LANGUAGE=en-US:Christmas Day
+DESCRIPTION;VALUE=TEXT;LANGUAGE=en-US:Christmas is an annual festival comm
+ emorating the birth of Jesus Christ\, observed primarily on December 25 as
+  a religious and cultural celebration among billions of people around the 
+ world. A feast central to the Christian liturgical year\, it is preceded b
+ y the season of Advent or the Nativity Fast and initiates the season of Ch
+ ristmastide\, which historically in the West lasts twelve days and culmina
+ tes on Twelfth Night. Christmas Day is a public holiday in many countries\
+ , is celebrated religiously by a majority of Christians\, as well as cultu
+ rally by many non-Christians\, and forms an integral part of the holiday s
+ eason organized around it.\n\nUpdated: Mon\, 11 Apr 2022 08:57:11 +0000\n\
+ nAdditional information\nhttps://en.wikipedia.org/wiki/Christmas\n\nThis c
+ alendar is provided by WebCal.Guru (https://www.webcal.guru/).
+CLASS;VALUE=TEXT:PUBLIC
+URL;VALUE=URI:https://en.wikipedia.org/wiki/Christmas
+CONTACT;VALUE=TEXT:guru@webcal.guru
+TRANSP;VALUE=TEXT:TRANSPARENT
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;VALUE=TEXT:DISABLED
+STATUS;VALUE=TEXT:CONFIRMED
+PRIORITY;VALUE=INTEGER:5
+SEQUENCE;VALUE=INTEGER:831
+CREATED;VALUE=DATE-TIME:20220411T085711Z
+LAST-MODIFIED;VALUE=DATE-TIME:20220411T085711Z
+DTSTAMP;VALUE=DATE-TIME:20220411T085711Z
+END:VEVENT
+BEGIN:VEVENT
+UID;VALUE=TEXT:6CBF296B-05CF-4B63-A853-8DD38FC3C493@webcal.guru
+X-FUNAMBOL-ALLDAY:1
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+DTSTART;VALUE=DATE:20221226
+DTEND;VALUE=DATE:20221227
+SUMMARY;VALUE=TEXT;LANGUAGE=en-US:Christmas Day Federal Holiday
+DESCRIPTION;VALUE=TEXT;LANGUAGE=en-US:Christmas is an annual festival comm
+ emorating the birth of Jesus Christ\, observed primarily on December 25 as
+  a religious and cultural celebration among billions of people around the 
+ world. A feast central to the Christian liturgical year\, it is preceded b
+ y the season of Advent or the Nativity Fast and initiates the season of Ch
+ ristmastide\, which historically in the West lasts twelve days and culmina
+ tes on Twelfth Night. Christmas Day is a public holiday in many countries\
+ , is celebrated religiously by a majority of Christians\, as well as cultu
+ rally by many non-Christians\, and forms an integral part of the holiday s
+ eason organized around it.\n\nUpdated: Mon\, 11 Apr 2022 08:57:11 +0000\n\
+ nAdditional information\nhttps://en.wikipedia.org/wiki/Christmas\n\nThis c
+ alendar is provided by WebCal.Guru (https://www.webcal.guru/).
+CLASS;VALUE=TEXT:PUBLIC
+URL;VALUE=URI:https://en.wikipedia.org/wiki/Christmas
+CONTACT;VALUE=TEXT:guru@webcal.guru
+TRANSP;VALUE=TEXT:TRANSPARENT
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;VALUE=TEXT:DISABLED
+STATUS;VALUE=TEXT:CONFIRMED
+PRIORITY;VALUE=INTEGER:5
+SEQUENCE;VALUE=INTEGER:831
+CREATED;VALUE=DATE-TIME:20220411T085711Z
+LAST-MODIFIED;VALUE=DATE-TIME:20220411T085711Z
+DTSTAMP;VALUE=DATE-TIME:20220411T085711Z
+END:VEVENT
+BEGIN:VEVENT
+UID;VALUE=TEXT:A8B822B5-3CC8-4A23-A958-153D860603D5@webcal.guru
+X-FUNAMBOL-ALLDAY:1
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+DTSTART;VALUE=DATE:20230101
+DTEND;VALUE=DATE:20230102
+SUMMARY;VALUE=TEXT;LANGUAGE=en-US:New Year\'s Day
+DESCRIPTION;VALUE=TEXT;LANGUAGE=en-US:New Year's Day\, also simply called 
+ New Year or New Year's\, is observed on 1 January\, the first day of the y
+ ear in the modern Gregorian calendar as well as the Julian calendar. Whils
+ t most solar calendars begin the year regularly at or near the northern wi
+ nter solstice\, the start of the new year in cultures that observe a lunis
+ olar or lunar calendar happen at less fixed points relative to the solar y
+ ear.\n\nUpdated: Mon\, 11 Apr 2022 08:57:11 +0000\n\nAdditional informatio
+ n\nhttps://en.wikipedia.org/wiki/New_Year%27s_Day\n\nThis calendar is prov
+ ided by WebCal.Guru (https://www.webcal.guru/).
+CLASS;VALUE=TEXT:PUBLIC
+URL;VALUE=URI:https://en.wikipedia.org/wiki/New_Year%27s_Day
+CONTACT;VALUE=TEXT:guru@webcal.guru
+TRANSP;VALUE=TEXT:TRANSPARENT
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;VALUE=TEXT:DISABLED
+STATUS;VALUE=TEXT:CONFIRMED
+PRIORITY;VALUE=INTEGER:5
+SEQUENCE;VALUE=INTEGER:831
+CREATED;VALUE=DATE-TIME:20220411T085711Z
+LAST-MODIFIED;VALUE=DATE-TIME:20220411T085711Z
+DTSTAMP;VALUE=DATE-TIME:20220411T085711Z
+END:VEVENT
+BEGIN:VEVENT
+UID;VALUE=TEXT:B90B9F4C-6A05-413B-AAA5-DAD23FFC9E7D@webcal.guru
+X-FUNAMBOL-ALLDAY:1
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+DTSTART;VALUE=DATE:20230102
+DTEND;VALUE=DATE:20230103
+SUMMARY;VALUE=TEXT;LANGUAGE=en-US:New Year\'s Day Federal Holiday
+DESCRIPTION;VALUE=TEXT;LANGUAGE=en-US:New Year's Day\, also simply called 
+ New Year or New Year's\, is observed on 1 January\, the first day of the y
+ ear in the modern Gregorian calendar as well as the Julian calendar. Whils
+ t most solar calendars begin the year regularly at or near the northern wi
+ nter solstice\, the start of the new year in cultures that observe a lunis
+ olar or lunar calendar happen at less fixed points relative to the solar y
+ ear.\n\nUpdated: Mon\, 11 Apr 2022 08:57:11 +0000\n\nAdditional informatio
+ n\nhttps://en.wikipedia.org/wiki/New_Year%27s_Day\n\nThis calendar is prov
+ ided by WebCal.Guru (https://www.webcal.guru/).
+CLASS;VALUE=TEXT:PUBLIC
+URL;VALUE=URI:https://en.wikipedia.org/wiki/New_Year%27s_Day
+CONTACT;VALUE=TEXT:guru@webcal.guru
+TRANSP;VALUE=TEXT:TRANSPARENT
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;VALUE=TEXT:DISABLED
+STATUS;VALUE=TEXT:CONFIRMED
+PRIORITY;VALUE=INTEGER:5
+SEQUENCE;VALUE=INTEGER:831
+CREATED;VALUE=DATE-TIME:20220411T085711Z
+LAST-MODIFIED;VALUE=DATE-TIME:20220411T085711Z
+DTSTAMP;VALUE=DATE-TIME:20220411T085711Z
+END:VEVENT
+BEGIN:VEVENT
+UID;VALUE=TEXT:39F19057-FCF9-4A94-ADE4-6491EDCC7EA0@webcal.guru
+X-FUNAMBOL-ALLDAY:1
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+DTSTART;VALUE=DATE:20230116
+DTEND;VALUE=DATE:20230117
+SUMMARY;VALUE=TEXT;LANGUAGE=en-US:Martin Luther King\, Jr. Day
+DESCRIPTION;VALUE=TEXT;LANGUAGE=en-US:Martin Luther King Jr. Day is a fede
+ ral holiday in the United States marking the birthday of Martin Luther Kin
+ g Jr. It is observed on the third Monday of January each year. Born in 192
+ 9\, King's actual birthday is January 15. The holiday is similar to holida
+ ys set under the Uniform Monday Holiday Act. The earliest Monday for this 
+ holiday is January 15 and the latest is January 21.\n\nUpdated: Mon\, 11 A
+ pr 2022 08:57:11 +0000\n\nAdditional information\nhttps://en.wikipedia.org
+ /wiki/Martin_Luther_King\,_Jr._Day\n\nThis calendar is provided by WebCal.
+ Guru (https://www.webcal.guru/).
+CLASS;VALUE=TEXT:PUBLIC
+URL;VALUE=URI:https://en.wikipedia.org/wiki/Martin_Luther_King\,_Jr._Day
+CONTACT;VALUE=TEXT:guru@webcal.guru
+TRANSP;VALUE=TEXT:TRANSPARENT
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;VALUE=TEXT:DISABLED
+STATUS;VALUE=TEXT:CONFIRMED
+PRIORITY;VALUE=INTEGER:5
+SEQUENCE;VALUE=INTEGER:831
+CREATED;VALUE=DATE-TIME:20220411T085711Z
+LAST-MODIFIED;VALUE=DATE-TIME:20220411T085711Z
+DTSTAMP;VALUE=DATE-TIME:20220411T085711Z
+END:VEVENT
+BEGIN:VEVENT
+UID;VALUE=TEXT:C5F8A8AE-3963-490D-A6BB-2BA9865C5632@webcal.guru
+X-FUNAMBOL-ALLDAY:1
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+DTSTART;VALUE=DATE:20230220
+DTEND;VALUE=DATE:20230221
+SUMMARY;VALUE=TEXT;LANGUAGE=en-US:Washington\'s Birthday
+DESCRIPTION;VALUE=TEXT;LANGUAGE=en-US:Presidents' Day\, officially Washing
+ ton's Birthday\, is a holiday in the United States celebrated on the third
+  Monday of February to honor all U.S. presidents. The federal holiday spec
+ ifically honors George Washington\, who led the Continental Army to victor
+ y in the American Revolutionary War\, presided at the Constitutional Conve
+ ntion of 1787\, and was the first president of the United States.\n\nUpdat
+ ed: Mon\, 11 Apr 2022 08:57:11 +0000\n\nAdditional information\nhttps://en
+ .wikipedia.org/wiki/Washington%27s_Birthday\n\nThis calendar is provided b
+ y WebCal.Guru (https://www.webcal.guru/).
+CLASS;VALUE=TEXT:PUBLIC
+URL;VALUE=URI:https://en.wikipedia.org/wiki/Washington%27s_Birthday
+CONTACT;VALUE=TEXT:guru@webcal.guru
+TRANSP;VALUE=TEXT:TRANSPARENT
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;VALUE=TEXT:DISABLED
+STATUS;VALUE=TEXT:CONFIRMED
+PRIORITY;VALUE=INTEGER:5
+SEQUENCE;VALUE=INTEGER:831
+CREATED;VALUE=DATE-TIME:20220411T085711Z
+LAST-MODIFIED;VALUE=DATE-TIME:20220411T085711Z
+DTSTAMP;VALUE=DATE-TIME:20220411T085711Z
+END:VEVENT
+LAST-MODIFIED;VALUE=DATE-TIME:20220411T085711Z
+END:VCALENDAR

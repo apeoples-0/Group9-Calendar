@@ -139,3 +139,10 @@ html {
         font-size: medium;
 
     }
+
+    div.setting h2,
+    div.setting a{
+        display: inline;
+        border-bottom: none;
+        text-align: center;
+    }
