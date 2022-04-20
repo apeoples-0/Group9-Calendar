@@ -27,6 +27,7 @@
               $("#shareButton").attr("value",info.event.id);
               $('#manageEventModal').modal('show'); 
             },
+            aspectRatio:  2.3,
           customButtons: {
             accountButton: {
               text: 'Account',
@@ -68,7 +69,7 @@
           headerToolbar: {
             left: 'monthButton,weekButton,dayButton addEventButton',
             center: 'title',
-            right: 'prev,next accountButton,logoutButton'
+            right: 'today prev,next prevYear,nextYear accountButton,logoutButton'
           },
           initialView: 'dayGridMonth',
           events : [
