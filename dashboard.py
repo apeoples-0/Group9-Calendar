@@ -24,22 +24,11 @@ def loadEvents():
     cursor.execute(getEventsQuery, str(session['userID']))
 
     # Store the events from the database in eventsSQL
-    eventsSQL = cursor.fetchall()
+    events = cursor.fetchall()
 
-    # Create events array to be passed to the frontend
-    events = []
-
-    # Add events
-    for event in eventsSQL:
-        events.append({
-             "name" : event['eventName'],
-             "startdate" : event['startTime'],
-             "enddate" : event['endTime'],
-             "id" : event['eventID'],
-             "color" : event['color'],
-             #TODO: PROPERLY IMPLEMENT ALLDAY EVENTS
-             "allDay" : 'false'
-        })
+    # (Temporary) Set allDay to false by default
+    for event in events:
+        event['allDay'] = 'false'
 
     return events
 
@@ -54,21 +43,12 @@ def loadHolidays():
     cursor.execute(getHolidaysQuery)
 
     # Store the holidays from the database in eventsSQL
-    holidaysSQL = cursor.fetchall()
-    
-    # Create holidays array for frontend
-    holidays = []
+    holidays = cursor.fetchall()
 
-    # Add holidays
-    for event in holidaysSQL:
-        holidays.append({
-             "name" : event['eventName'],
-             "startdate" : event['startTime'],
-             "enddate" : event['endTime'],
-             "id" : 'None',
-             "color" : event['color'],
-             "allDay" : 'true'
-        })
+    # Add id and allDay tags
+    for holiday in holidays:
+        holiday['eventID'] = 'None'
+        holiday['allDay'] = 'true'
 
     return holidays
 
