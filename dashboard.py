@@ -1,6 +1,6 @@
 # This file contains the routes for dashboard related tasks
 
-from multiprocessing import shared_memory
+from multiprocessing import Event, shared_memory
 from tracemalloc import start
 import MySQLdb
 from flask import request, session, render_template, redirect, url_for, Blueprint
@@ -34,6 +34,7 @@ def loadEvents():
         events.append({
              "name" : event['eventName'],
              "startdate" : event['startTime'],
+             "rrule" : event['rulestring'],
              "enddate" : event['endTime'],
              "id" : event['eventID'],
              "color" : event['color'],
@@ -119,6 +120,7 @@ def addEvent():
     startDateTime = request.form['startDateTime']
     endDateTime = request.form['endDateTime']
     color = getCSSColor(request.form['eventColor'])
+    rulestring = ruleToString()
 
     if request.method == 'POST':
         if 'loggedIn' in session:
@@ -127,7 +129,7 @@ def addEvent():
             if ((eventName != "" or None) and (startDateTime != "" or None)):
                 cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, 0, %s)', (eventName, convertDateTime(startDateTime),
-                convertDateTime(endDateTime), session['userID'], color))
+                convertDateTime(endDateTime), session['userID'], color, rulestring))
                 db.mysql.connection.commit()
     return redirect(url_for('dashboard.dash'))
 
@@ -230,3 +232,25 @@ def getCSSColor(color):
             return "darkgreen"
         case "Purple":
             return "purple"
+
+#Get and Convert rule info into a string
+""""
+def ruleToString():
+rule = new RRule({
+  freq: getFreq(request.form['recurrtype']),
+  count: request.form['countnum'],
+})
+ruleString = rule.tostring()
+return ruleString
+"""
+#Gets the frequency from the addeventmodal
+def getFreq(freq):
+    match freq:
+        case "Daily":
+            return "RRule.DAILY"
+        case "Weekly":
+            return "RRule.WEEKLY"
+        case "Monthly":
+            return "RRule.MONTHLY"
+        case "Yearly":
+            return "RRule.YEARLY"

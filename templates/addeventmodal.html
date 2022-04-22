@@ -43,6 +43,19 @@
                         <option>Purple</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="count">Amount of times to recurr the event:</label>
+                    <input type="number" id="countnum" name="countnum" min="1" max="99">
+                </div>
+                <div class="form-group">
+                    <label for="recurrtype">What type of recursion:</label>
+                    <select class="form-control" id="recurrtype" name="recurrtype">
+                        <option>Daily</option>
+                        <option>Weekly</option>
+                        <option>Monthly</option>
+                        <option>Yearly</option>
+                    </select>
+                </div>
                 <script type="text/javascript">
                     $(function () {
                         $('#startdatetimepicker').datetimepicker({
