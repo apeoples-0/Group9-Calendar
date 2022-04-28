@@ -121,7 +121,11 @@ def addEvent():
     endDateTime = request.form['endDateTime']
     color = getCSSColor(request.form['eventColor'])
     rulestring = ruleToString()
-    allday = request.form('allDay')
+
+    if 'allDay' in request.form:
+        allDay = 1
+    else:
+        allday = 0
 
     if request.method == 'POST':
         if 'loggedIn' in session:
@@ -130,7 +134,7 @@ def addEvent():
             if ((eventName != "" or None) and (startDateTime != "" or None)):
                 cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, 0, %s, %s)', (eventName, rulestring, convertDateTime(startDateTime),
-                convertDateTime(endDateTime), session['userID'],allday, color ))
+                convertDateTime(endDateTime), session['userID'], allay, color ))
                 db.mysql.connection.commit()
     return redirect(url_for('dashboard.dash'))
 
