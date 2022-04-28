@@ -34,7 +34,7 @@ def loadEvents():
         events.append({
              "name" : event['eventName'],
              "startdate" : event['startTime'],
-             "rrule" : event['rulestring'],
+             "rrule" : event['ruleString'],
              "enddate" : event['endTime'],
              "id" : event['eventID'],
              "color" : event['color'],
@@ -121,6 +121,7 @@ def addEvent():
     endDateTime = request.form['endDateTime']
     color = getCSSColor(request.form['eventColor'])
     rulestring = ruleToString()
+    allday = request.form('allDay')
 
     if request.method == 'POST':
         if 'loggedIn' in session:
@@ -128,8 +129,8 @@ def addEvent():
                 return render_template('addeventfailed.html')
             if ((eventName != "" or None) and (startDateTime != "" or None)):
                 cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, 0, %s)', (eventName, convertDateTime(startDateTime),
-                convertDateTime(endDateTime), session['userID'], color, rulestring))
+                cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, 0, %s, %s)', (eventName, rulestring, convertDateTime(startDateTime),
+                convertDateTime(endDateTime), session['userID'],allday, color ))
                 db.mysql.connection.commit()
     return redirect(url_for('dashboard.dash'))
 
