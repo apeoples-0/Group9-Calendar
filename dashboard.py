@@ -134,7 +134,7 @@ def addEvent():
             if ((eventName != "" or None) and (startDateTime != "" or None)):
                 cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, 0, %s, %s)', (eventName, rulestring, convertDateTime(startDateTime),
-                convertDateTime(endDateTime), session['userID'], allay, color ))
+                convertDateTime(endDateTime), session['userID'], allDay, color ))
                 db.mysql.connection.commit()
     return redirect(url_for('dashboard.dash'))
 
