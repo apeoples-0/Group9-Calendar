@@ -1,4 +1,6 @@
 # This file contains the routes for dashboard related tasks
+import datetime
+from tracemalloc import start
 import MySQLdb
 from flask import request, session, render_template, redirect, url_for, Blueprint
 # Import database connection from db.py
@@ -12,6 +14,18 @@ dashboard = Blueprint('dashboard', __name__)
 # Add backslash escape characters before apostrophes in a string
 def addEscapeCharacters(string):
     return string.replace("'", "\\'")
+
+# Calculate difference between start and end times to get event duration
+def getEventDuration(startTime, endTime):
+    # Calculate duration
+    duration = endTime - startTime
+    
+    # Convert duration to hh:mm and add padding 0's
+    hours = (duration.days * 24) + (duration.seconds // 3600)
+    minutes = (duration.seconds % 3600) // 60
+    duration = str(hours).zfill(2) + ":" + str(minutes).zfill(2)
+
+    return duration
 
 # Load Events
 def loadEvents():
@@ -32,6 +46,8 @@ def loadEvents():
         event['eventName'] = addEscapeCharacters(event['eventName'])
         #TODO: PROPERLY IMPLEMENT ALLDAY EVENTS
         event['allDay'] = 'false'
+        # Calculate duration as per rrule implementation
+        event['duration'] = getEventDuration(event['startTime'], event['endTime'])
         
     return events
 
@@ -118,6 +134,10 @@ def addEvent():
             if ((eventName == "" or None)):
                 return render_template('addeventfailed.html')
             if ((eventName != "" or None) and (startDateTime != "" or None)):
+                # Check if end time is before the start time 
+                if (convertDateTime(endDateTime) < convertDateTime(startDateTime)):
+                    return render_template('addeventfailed.html')
+                    
                 cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, %s, %s, 0, %s, %s)', (eventName, frequency, interval, convertDateTime(startDateTime),
                 convertDateTime(endDateTime), session['userID'], allDay, color))
