@@ -1,7 +1,4 @@
 # This file contains the routes for dashboard related tasks
-
-from multiprocessing import shared_memory
-from tracemalloc import start
 import MySQLdb
 from flask import request, session, render_template, redirect, url_for, Blueprint
 # Import database connection from db.py
@@ -11,6 +8,10 @@ import re
 
 # Define dashboard blueprint
 dashboard = Blueprint('dashboard', __name__)
+
+# Add backslash escape characters before apostrophes in a string
+def addEscapeCharacters(string):
+    return string.replace("'", "\\'")
 
 # Load Events
 def loadEvents():
@@ -23,13 +24,15 @@ def loadEvents():
     cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute(getEventsQuery, str(session['userID']))
 
-    # Store the events from the database in eventsSQL
+    # Store the events from the database in events
     events = cursor.fetchall()
 
-    # (Temporary) Set allDay to false by default
+    # Add events
     for event in events:
+        event['eventName'] = addEscapeCharacters(event['eventName'])
+        #TODO: PROPERLY IMPLEMENT ALLDAY EVENTS
         event['allDay'] = 'false'
-
+        
     return events
 
 # Load holidays
@@ -42,13 +45,16 @@ def loadHolidays():
     cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute(getHolidaysQuery)
 
-    # Store the holidays from the database in eventsSQL
+    # Store the holidays from the database in holidays
     holidays = cursor.fetchall()
 
-    # Add id and allDay tags
-    for holiday in holidays:
-        holiday['eventID'] = 'None'
-        holiday['allDay'] = 'true'
+    # Add holidays
+    for event in holidays:
+        event['eventName'] = addEscapeCharacters(event['eventName'])
+        event['eventID'] = None
+        event['allDay'] = 'true'
+        event['recurrenceFreq'] = 'yearly'
+        event['recurrenceCount'] = 1
 
     return holidays
 
@@ -99,6 +105,13 @@ def addEvent():
     startDateTime = request.form['startDateTime']
     endDateTime = request.form['endDateTime']
     color = getCSSColor(request.form['eventColor'])
+    interval = request.form['countnum']
+    frequency = request.form['recurrtype']
+
+    if 'allDay' in request.form:
+        allDay = 1
+    else:
+        allDay = 0
 
     if request.method == 'POST':
         if 'loggedIn' in session:
@@ -106,8 +119,8 @@ def addEvent():
                 return render_template('addeventfailed.html')
             if ((eventName != "" or None) and (startDateTime != "" or None)):
                 cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, 0, %s)', (eventName, convertDateTime(startDateTime),
-                convertDateTime(endDateTime), session['userID'], color))
+                cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, %s, %s, 0, %s, %s)', (eventName, frequency, interval, convertDateTime(startDateTime),
+                convertDateTime(endDateTime), session['userID'], allDay, color))
                 db.mysql.connection.commit()
     return redirect(url_for('dashboard.dash'))
 

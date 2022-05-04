@@ -13,10 +13,13 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 CREATE TABLE IF NOT EXISTS `events` (
   `eventID` INT NOT NULL AUTO_INCREMENT,
   `eventName` VARCHAR(128) NULL,
+  `recurrenceFreq` VARCHAR(16) NULL,
+  `recurrenceCount` INT NULL,
   `startTime` DATETIME NULL,
   `endTime` DATETIME NULL,
   `userID` INT NULL,
   `shareable` BIT NULL,
+  `allDay` BIT NULL,
   `color` VARCHAR(20) NULL,
   PRIMARY KEY (`eventID`),
   INDEX `userID_idx` (`userID` ASC) VISIBLE,
