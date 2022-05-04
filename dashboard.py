@@ -52,7 +52,7 @@ def loadHolidays():
     for event in holidays:
         event['eventName'] = addEscapeCharacters(event['eventName'])
         event['eventID'] = None
-        event['allDay'] = 'true'
+        event['allDay'] = 1
         event['recurrenceFreq'] = 'yearly'
         event['recurrenceCount'] = 1
 

@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `events` (
   `endTime` DATETIME NULL,
   `userID` INT NULL,
   `shareable` BIT NULL,
-  `allDay` BIT NULL,
+  `allDay` VARCHAR(5) NULL,
   `color` VARCHAR(20) NULL,
   PRIMARY KEY (`eventID`),
   INDEX `userID_idx` (`userID` ASC) VISIBLE,
