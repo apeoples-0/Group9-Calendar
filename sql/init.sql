@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 CREATE TABLE IF NOT EXISTS `events` (
   `eventID` INT NOT NULL AUTO_INCREMENT,
   `eventName` VARCHAR(128) NULL,
-  `ruleString` VARCHAR(128) NULL,
+  `recurrenceFreq` VARCHAR(16) NULL,
+  `recurrenceCount` INT NULL,
   `startTime` DATETIME NULL,
   `endTime` DATETIME NULL,
   `userID` INT NULL,
@@ -38,13 +39,13 @@ CREATE TABLE IF NOT EXISTS `holidays` (
   PRIMARY KEY (`holidayID`)
 );
 
-INSERT INTO holidays VALUES (NULL, 'Veterans Day', '2022-11-11T00:00:00+00:00', '2022-11-11T00:00:00+00:00', 'black');
-INSERT INTO holidays VALUES (NULL, 'Memorial Day', '2022-05-30T00:00:00+00:00', '2022-05-30T00:00:00+00:00', 'black');
-INSERT INTO holidays VALUES (NULL, 'Labor Day', '2022-09-05T00:00:00+00:00', '2022-09-05T00:00:00+00:00', 'black');
-INSERT INTO holidays VALUES (NULL, 'Columbus Day', '2022-10-10T00:00:00+00:00', '2022-10-10T00:00:00+00:00', 'black');
-INSERT INTO holidays VALUES (NULL, 'New Year\'s Day', '2023-01-01T00:00:00+00:00', '2023-01-01T00:00:00+00:00', 'black');
-INSERT INTO holidays VALUES (NULL, 'Christmas Day', '2022-12-25T00:00:00+00:00', '2022-12-25T00:00:00+00:00', 'black');
-INSERT INTO holidays VALUES (NULL, 'Washington\'s Birthday', '2023-02-20T00:00:00+00:00', '2023-02-20T00:00:00+00:00', 'black');
-INSERT INTO holidays VALUES (NULL, 'Thanksgiving Day', '2022-11-24T00:00:00+00:00', '2022-11-24T00:00:00+00:00', 'black');
-INSERT INTO holidays VALUES (NULL, 'Independence Day', '2022-07-04T00:00:00+00:00', '2022-07-04T00:00:00+00:00', 'black');
-INSERT INTO holidays VALUES (NULL, 'Martin Luther King, Jr. Day', '2023-01-16T00:00:00+00:00', '2023-01-16T00:00:00+00:00', 'black');
+INSERT INTO holidays VALUES (NULL, 'Veterans Day', '2022-11-11T00:00:00', '2022-11-11T00:00:00', 'black');
+INSERT INTO holidays VALUES (NULL, 'Memorial Day', '2022-05-30T00:00:00', '2022-05-30T00:00:00', 'black');
+INSERT INTO holidays VALUES (NULL, 'Labor Day', '2022-09-05T00:00:00', '2022-09-05T00:00:00', 'black');
+INSERT INTO holidays VALUES (NULL, 'Columbus Day', '2022-10-10T00:00:00', '2022-10-10T00:00:00', 'black');
+INSERT INTO holidays VALUES (NULL, 'New Year\'s Day', '2023-01-01T00:00:00', '2023-01-01T00:00:00', 'black');
+INSERT INTO holidays VALUES (NULL, 'Christmas Day', '2022-12-25T00:00:00', '2022-12-25T00:00:00', 'black');
+INSERT INTO holidays VALUES (NULL, 'Washington\'s Birthday', '2023-02-20T00:00:00', '2023-02-20T00:00:00', 'black');
+INSERT INTO holidays VALUES (NULL, 'Thanksgiving Day', '2022-11-24T00:00:00', '2022-11-24T00:00:00', 'black');
+INSERT INTO holidays VALUES (NULL, 'Independence Day', '2022-07-04T00:00:00', '2022-07-04T00:00:00', 'black');
+INSERT INTO holidays VALUES (NULL, 'Martin Luther King, Jr. Day', '2023-01-16T00:00:00', '2023-01-16T00:00:00', 'black');

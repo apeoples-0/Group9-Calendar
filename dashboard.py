@@ -12,6 +12,10 @@ import re
 # Define dashboard blueprint
 dashboard = Blueprint('dashboard', __name__)
 
+# Add backslash escape characters before apostrophes in a string
+def addEscapeCharacters(string):
+    return string.replace("'", "\\'")
+
 # Load Events
 def loadEvents():
     # Get logged in user's events from database
@@ -23,25 +27,15 @@ def loadEvents():
     cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute(getEventsQuery, str(session['userID']))
 
-    # Store the events from the database in eventsSQL
-    eventsSQL = cursor.fetchall()
-
-    # Create events array to be passed to the frontend
-    events = []
+    # Store the events from the database in events
+    events = cursor.fetchall()
 
     # Add events
-    for event in eventsSQL:
-        events.append({
-             "name" : event['eventName'],
-             "startdate" : event['startTime'],
-             "rrule" : event['ruleString'],
-             "enddate" : event['endTime'],
-             "id" : event['eventID'],
-             "color" : event['color'],
-             #TODO: PROPERLY IMPLEMENT ALLDAY EVENTS
-             "allDay" : 'false'
-        })
-
+    for event in events:
+        event['eventName'] = addEscapeCharacters(event['eventName'])
+        #TODO: PROPERLY IMPLEMENT ALLDAY EVENTS
+        event['allDay'] = 'false'
+        
     return events
 
 # Load holidays
@@ -54,22 +48,16 @@ def loadHolidays():
     cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute(getHolidaysQuery)
 
-    # Store the holidays from the database in eventsSQL
-    holidaysSQL = cursor.fetchall()
-    
-    # Create holidays array for frontend
-    holidays = []
+    # Store the holidays from the database in holidays
+    holidays = cursor.fetchall()
 
     # Add holidays
-    for event in holidaysSQL:
-        holidays.append({
-             "name" : event['eventName'],
-             "startdate" : event['startTime'],
-             "enddate" : event['endTime'],
-             "id" : 'None',
-             "color" : event['color'],
-             "allDay" : 'true'
-        })
+    for event in holidays:
+        event['eventName'] = addEscapeCharacters(event['eventName'])
+        event['eventID'] = None
+        event['allDay'] = 'true'
+        event['recurrenceFreq'] = 'yearly'
+        event['recurrenceCount'] = 1
 
     return holidays
 
@@ -120,12 +108,13 @@ def addEvent():
     startDateTime = request.form['startDateTime']
     endDateTime = request.form['endDateTime']
     color = getCSSColor(request.form['eventColor'])
-    rulestring = ruleToString()
+    interval = request.form['countnum']
+    frequency = request.form['recurrtype']
 
     if 'allDay' in request.form:
         allDay = 1
     else:
-        allday = 0
+        allDay = 0
 
     if request.method == 'POST':
         if 'loggedIn' in session:
@@ -133,8 +122,8 @@ def addEvent():
                 return render_template('addeventfailed.html')
             if ((eventName != "" or None) and (startDateTime != "" or None)):
                 cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, 0, %s, %s)', (eventName, rulestring, convertDateTime(startDateTime),
-                convertDateTime(endDateTime), session['userID'], allDay, color ))
+                cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, %s, %s, 0, %s, %s)', (eventName, frequency, interval, convertDateTime(startDateTime),
+                convertDateTime(endDateTime), session['userID'], allDay, color))
                 db.mysql.connection.commit()
     return redirect(url_for('dashboard.dash'))
 
@@ -237,25 +226,3 @@ def getCSSColor(color):
             return "darkgreen"
         case "Purple":
             return "purple"
-
-#Get and Convert rule info into a string
-""""
-def ruleToString():
-rule = new RRule({
-  freq: getFreq(request.form['recurrtype']),
-  count: request.form['countnum'],
-})
-ruleString = rule.tostring()
-return ruleString
-"""
-#Gets the frequency from the addeventmodal
-def getFreq(freq):
-    match freq:
-        case "Daily":
-            return "RRule.DAILY"
-        case "Weekly":
-            return "RRule.WEEKLY"
-        case "Monthly":
-            return "RRule.MONTHLY"
-        case "Yearly":
-            return "RRule.YEARLY"
