@@ -18,6 +18,20 @@
             <h2>Holidays:</h2> <a href="{{ url_for('account.enableHolidays') }} ">On</a> <a
                 href="{{ url_for('account.disableHolidays') }} ">Off</a>
         </div>
+        <div class="setting" style="text-align: center;">
+            <form action="{{ url_for('account.setTheme') }}" method="post">
+                <h2>Theme:</h2>
+                <select name="theme" id="theme">
+                    <option value="default">Default</option>
+                    <option value="darkly">Darkly</option>
+                    <option value="materia">Materia</option>
+                    <option value="minty">Minty</option>
+                    <option value="pulse">Pulse</option>
+                    <option value="united">United</option>
+                </select>
+                <button type="submit">Set Theme</button> 
+            </form>
+        </div>
     </div>
 </body>
 

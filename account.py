@@ -55,6 +55,7 @@ def login():
             session['username'] = account['username']
             session['userID'] = account['userID']
             session['holidays'] = int.from_bytes(account['holidays'], "big")
+            session['theme'] = account['theme']
             session.permanent = True
             # Redirect to Dashboard
             return redirect(url_for('dashboard.dash'))
@@ -95,7 +96,7 @@ def register():
             error = "Username must only contain letters, numbers, dashes, and underscores."
         # Create account
         else:
-            cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s, %s, 1)', (username, password, backupPhrase))
+            cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s, %s, 1, "default")', (username, password, backupPhrase))
             db.mysql.connection.commit()
             error = "Registration Successful!"
 
@@ -107,8 +108,11 @@ def management():
     # Error (if any)
     error = ''
 
-    # Redirect to login
-    return render_template('management.html', error = error, username=session['username'])
+    # Redirect to login if not logged in
+    if 'loggedIn' not in session:
+        return redirect(url_for('account.login'))
+    else:
+        return render_template('management.html', error = error, username=session['username'])
 
 # Password Reset
 @account.route('/passwordreset', methods=['GET', 'POST'])
@@ -148,6 +152,45 @@ def passwordReset():
             message = 'Username or backup phrase incorrect!'
 
     return render_template('passwordreset.html', message = message)
+
+# Set theme
+@account.route('/settheme', methods=['GET', 'POST'])
+def setTheme():
+    # If user is not logged in, redirect to login
+    if 'loggedIn' not in session:
+        return redirect(url_for('account.login'))
+
+    # Get POST requests (theme)
+    if request.method == 'POST':
+        # Get theme from form
+        theme = request.form['theme']
+
+        print(request.form)
+
+        # MySQL (check for account)
+        cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        # Execute MySQL query to check for account
+        cursor.execute('SELECT * from accounts WHERE userID = %s', (session['userID'],))
+        # Return record
+        account = cursor.fetchone()
+
+        # If cursor.fetchone() returns an account
+        if account:
+            # Set theme in database
+            updateQuery = '''
+            UPDATE accounts
+            SET theme = %s
+            WHERE userID = %s
+            '''
+            cursor.execute(updateQuery, (theme, session['userID']))
+            db.mysql.connection.commit()
+
+            # Set theme in session
+            session['theme'] = theme
+
+            # Return to account management
+            return redirect(url_for('account.management'))
+
 
 # Change Password
 @account.route('/changepassword', methods=['GET', 'POST'])
@@ -195,6 +238,7 @@ def logout():
     session.pop('username', None)
     session.pop('userID', None)
     session.pop('holidays', None)
+    session.pop('theme', None)
 
     # Redirect to login
     return redirect(url_for('account.login'))

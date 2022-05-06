@@ -15,8 +15,8 @@ dashboard = Blueprint('dashboard', __name__)
 def addEscapeCharacters(string):
     return string.replace("'", "\\'")
 
-# Calculate difference between start and end times to get event duration
-def getEventDuration(startTime, endTime):
+# Calculate difference between start and end times to get event duration (Make sure all-day events are at least 24 hours)
+def getEventDuration(startTime, endTime, allDay):
     # Calculate duration
     duration = endTime - startTime
     
@@ -24,6 +24,10 @@ def getEventDuration(startTime, endTime):
     hours = (duration.days * 24) + (duration.seconds // 3600)
     minutes = (duration.seconds % 3600) // 60
     duration = str(hours).zfill(2) + ":" + str(minutes).zfill(2)
+
+    # If all-day event, make sure duration is at least 24 hours
+    if allDay and hours < 24:
+            duration = "24:00"
 
     return duration
 
@@ -44,10 +48,13 @@ def loadEvents():
     # Add events
     for event in events:
         event['eventName'] = addEscapeCharacters(event['eventName'])
-        #TODO: PROPERLY IMPLEMENT ALLDAY EVENTS
-        event['allDay'] = 'false'
+
+        # Convert allDay from bit to integer
+        event['allDay'] = int.from_bytes(event['allDay'], "big")
+
         # Calculate duration as per rrule implementation
-        event['duration'] = getEventDuration(event['startTime'], event['endTime'])
+        event['duration'] = getEventDuration(event['startTime'], event['endTime'], event['allDay'])
+
         
     return events
 
@@ -109,7 +116,7 @@ def dash():
                 events.append(event)
 
         # Go to Dashboard
-        return render_template('calendar.html', events = events)
+        return render_template('calendar.html', events = events, theme = session['theme'])
     
     # If user is not logged in, redirect to /login
     return redirect(url_for('account.login'))
@@ -129,6 +136,10 @@ def addEvent():
     else:
         allDay = 0
 
+    # If end time is not set, set it to the start time. 
+    if endDateTime == "":
+        endDateTime = startDateTime
+
     if request.method == 'POST':
         if 'loggedIn' in session:
             if ((eventName == "" or None)):
@@ -137,7 +148,7 @@ def addEvent():
                 # Check if end time is before the start time 
                 if (convertDateTime(endDateTime) < convertDateTime(startDateTime)):
                     return render_template('addeventfailed.html')
-                    
+
                 cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, %s, %s, 0, %s, %s)', (eventName, frequency, interval, convertDateTime(startDateTime),
                 convertDateTime(endDateTime), session['userID'], allDay, color))

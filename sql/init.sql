@@ -5,8 +5,9 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 	`userID` int NOT NULL AUTO_INCREMENT,
   	`username` varchar(50) NOT NULL,
   	`password` varchar(64) NOT NULL,
-	  `backupphrase` varchar(64) NOT NULL,
+	`backupphrase` varchar(64) NOT NULL,
     `holidays` BIT NULL,
+    `theme` varchar(16) NULL,
     PRIMARY KEY (`userID`)
 );
 
