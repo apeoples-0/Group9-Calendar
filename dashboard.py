@@ -89,6 +89,9 @@ def convertDateTime(date):
     # Convert hour to 24 hour time
     if dateList[5] == "PM":
         dateList[3] = str(int(dateList[3]) + 12)
+        # If hour is now 24, set it to 0
+        if dateList[3] == "24":
+            dateList[3] = "00"
 
     # Concatenate the string in the way MySQL expects
     convertedDate = '-'.join([dateList[2],dateList[0],dateList[1]])
