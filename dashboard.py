@@ -131,7 +131,7 @@ def addEvent():
     startDateTime = request.form['startDateTime']
     endDateTime = request.form['endDateTime']
     color = getCSSColor(request.form['eventColor'])
-    interval = request.form['countnum']
+    count = request.form['countnum']
     frequency = request.form['recurrtype']
 
     if 'allDay' in request.form:
@@ -153,7 +153,7 @@ def addEvent():
                     return render_template('addeventfailed.html')
 
                 cursor = db.mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, %s, %s, 0, %s, %s)', (eventName, frequency, interval, convertDateTime(startDateTime),
+                cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, %s, %s, 0, %s, %s)', (eventName, frequency, count, convertDateTime(startDateTime),
                 convertDateTime(endDateTime), session['userID'], allDay, color))
                 db.mysql.connection.commit()
     return redirect(url_for('dashboard.dash'))
@@ -197,8 +197,8 @@ def addSharedEvent():
             event = cursor.fetchone()
 
             # Insert the event into the user's calendar
-            cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, 1, %s)', (event['eventName'], event['startTime'],
-                event['endTime'], session['userID'], event['color'])) 
+            cursor.execute('INSERT INTO events VALUES (NULL, %s, %s, %s, %s, %s, %s, 1, %s, %s)', (event['eventName'], event['recurrenceFreq'], event['recurrenceCount'], event['startTime'],
+                event['endTime'], session['userID'], event['allDay'], event['color'])) 
             db.mysql.connection.commit()  
 
             return redirect(url_for('dashboard.dash'))
